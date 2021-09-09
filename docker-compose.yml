@@ -1,0 +1,7 @@
+services:
+    run:
+      build: .
+      working_dir: /app/
+      command: python3 main.py
+      volumes:
+        - .:/app/

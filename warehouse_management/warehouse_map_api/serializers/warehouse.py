@@ -10,12 +10,21 @@ class WarehouseSerializer(serializers.HyperlinkedModelSerializer):
     location = LocationSerializer()
     class Meta:
         model = warehouse
-        fields = ['brand_name', 'location']
+        fields = ['brand_name', 'location', 'id']
     
     def create(self, validated_data):
-        print (validated_data)
         x = validated_data.get('location').get('geo_location_x')
         y = validated_data.get('location').get('geo_location_y')
         location_to_save = list(location.objects.filter(geo_location_x=x, geo_location_y=y))
         validated_data['location'] = location.objects.get(id=location_to_save[0].id)
         return warehouse.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        x = validated_data.get('location').get('geo_location_x')
+        y = validated_data.get('location').get('geo_location_y')
+        instance.brand_name = validated_data.get('brand_name')
+        
+        location_to_save = list(location.objects.filter(geo_location_x=x, geo_location_y=y))
+        instance.location = location_to_save[0]
+        instance.save()
+        return instance

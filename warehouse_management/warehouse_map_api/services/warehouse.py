@@ -11,3 +11,26 @@ def add_warehouse(data):
     if serializer.is_valid():
         serializer.save()
     return serializer.data
+
+def get_warehouse(warehouse_id):
+    warehouse_to_get = warehouse.objects.get(id=warehouse_id)
+    serializer = WarehouseSerializer(warehouse_to_get)
+
+    return serializer.data
+
+def delete_warehouse(warehouse_id):
+    warehouse_to_delete = warehouse.objects.get(id=warehouse_id)
+    warehouse_to_delete.delete()
+    
+    return True
+
+def update_warehouse(data, warehouse_id):
+    location = data.pop('location')
+    location_serializer = create_location(data=location)
+    data['location'] = location_serializer
+
+    warehouse_to_update = warehouse.objects.get(id=warehouse_id)
+    serializer = WarehouseSerializer(warehouse_to_update, data)
+    if serializer.is_valid():
+        serializer.save()
+    return serializer.data

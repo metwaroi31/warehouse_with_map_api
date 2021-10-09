@@ -28,4 +28,13 @@ class Migration(migrations.Migration):
                 ('location', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='warehouse_map_api.location')),
             ],
         ),
+        migrations.CreateModel(
+            name='user',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('username', models.CharField(max_length=50)),
+                ('name', models.CharField(max_length=50)),
+                ('password', models.CharField(max_length=50)),
+            ],
+        ),
     ]

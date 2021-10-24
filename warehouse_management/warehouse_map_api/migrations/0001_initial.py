@@ -37,4 +37,19 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(max_length=50)),
             ],
         ),
+        migrations.CreateModel(
+            name='staff',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.CharField(max_length=50)),
+                ('position', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='warehouse_map_api.position')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='position',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.CharField(max_length=50)),
+            ],
+        ),
     ]

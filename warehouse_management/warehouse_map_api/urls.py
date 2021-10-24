@@ -1,13 +1,11 @@
 from django.urls import path
-from rest_framework.decorators import schema
-from warehouse_map_api.views.user import user_view
+from warehouse_map_api.views.position import add_position
 
 from warehouse_map_api.views.warehouse import add_warehouse_view, warehouse_view
-from warehouse_map_api.views.staff import add_staff
-from warehouse_map_api.views.user import add_user
-from rest_framework_swagger.views import get_swagger_view
+from warehouse_map_api.views.staff import add_staff, staff_view
+from warehouse_map_api.views.user import add_user, user_view
+from warehouse_map_api.views.position import add_position,position_view
 
-schema_view=get_swagger_view(title='Swagger')
 
 
 urlpatterns = [
@@ -16,7 +14,14 @@ urlpatterns = [
     path('api/warehouse/<int:id>', warehouse_view),
 
     path('api/add_staff', add_staff),
+    path('api/staff/<int:id>',staff_view),
+
     path('api/add_user', add_user),
     path('api/user/<int:id>',user_view),
-    path('', schema_view),
+
+    path('api/add_position', add_position),
+    path('api/position/<int:id>',position_view),
+
+    
+
 ]

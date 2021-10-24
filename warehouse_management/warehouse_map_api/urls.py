@@ -5,6 +5,7 @@ from warehouse_map_api.views.user import user_view
 from warehouse_map_api.views.warehouse import add_warehouse_view, warehouse_view
 from warehouse_map_api.views.staff import add_staff
 from warehouse_map_api.views.user import add_user
+from warehouse_map_api.views.product import *
 from rest_framework_swagger.views import get_swagger_view
 
 schema_view=get_swagger_view(title='Swagger')
@@ -14,6 +15,10 @@ urlpatterns = [
     # warehouse api
     path('api/add_warehouse', add_warehouse_view),
     path('api/warehouse/<int:id>', warehouse_view),
+
+    # product api
+    path('api/add_product', add_product),
+    path('api/product/<int:id>', product_view),
 
     path('api/add_staff', add_staff),
     path('api/add_user', add_user),

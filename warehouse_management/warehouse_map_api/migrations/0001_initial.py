@@ -52,4 +52,15 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=50)),
             ],
         ),
+        migrations.CreateModel(
+            name='order',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('directions', models.CharField(max_length=50)),
+                ('staff', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='warehouse_map_api.staff')),
+                ('moneybumber', models.IntegerField()),
+                ('warehouse', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='warehouse_map_api.warehouse')),
+                ('location', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='warehouse_map_api.location')),
+            ],
+        ),
     ]

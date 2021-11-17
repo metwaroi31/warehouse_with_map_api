@@ -1,6 +1,4 @@
 from django.urls import path
-from warehouse_map_api.views.position import add_position
-
 from warehouse_map_api.views.warehouse import add_warehouse_view, warehouse_view
 from warehouse_map_api.views.staff import add_staff, staff_view
 from warehouse_map_api.views.user import add_user, user_view
@@ -8,6 +6,8 @@ from warehouse_map_api.views.product import *
 from warehouse_map_api.views.position import add_position,position_view
 from warehouse_map_api.views.bill import *
 from rest_framework_swagger.views import get_swagger_view
+from warehouse_map_api.views.order import add_order, order_view
+
 
 urlpatterns = [
     # warehouse api
@@ -33,4 +33,9 @@ urlpatterns = [
     # position api
     path('api/add_position', add_position),
     path('api/position/<int:id>',position_view),
+
+    # order api
+    path('api/add_order', add_order),
+    path('api/order/<int:id>',order_view),
+
 ]

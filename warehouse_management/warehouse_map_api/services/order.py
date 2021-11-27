@@ -1,5 +1,5 @@
 from rest_framework.serializers import Serializer
-from warehouse_management.warehouse_map_api.models.order import order
+from warehouse_map_api.models.order import order
 from warehouse_map_api.serializers.order import OrderSerializer
 from warehouse_map_api.services.map_api import get_directions
 

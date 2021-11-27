@@ -1,5 +1,5 @@
 from django.urls import path, include
-from warehouse_management.warehouse_map_api.serializers.warehouse import WarehouseSerializer
+from warehouse_map_api.serializers.warehouse import WarehouseSerializer
 from warehouse_map_api.models.order import order 
 from warehouse_map_api.serializers.location import LocationSerializer
 from warehouse_map_api.serializers.staff import StaffSerializer

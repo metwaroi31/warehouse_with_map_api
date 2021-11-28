@@ -1,11 +1,12 @@
 from django.db import models
 from rest_framework import routers, serializers, viewsets
-from warehouse_map_api.models.position import position
 from warehouse_map_api.models.staff import staff
-
+from warehouse_map_api.models.position import position
 class StaffSerializer(serializers.HyperlinkedModelSerializer):
     name = models.CharField(max_length=50)
-    position = models.ForeignKey(position, related_name='position', on_delete=models.CASCADE)
+    position = serializers.PrimaryKeyRelatedField(queryset=position.objects.all() ,many=False)
+    # change to integer field
+    
     class Meta:
         model = staff
         fields = ['id','name','position']

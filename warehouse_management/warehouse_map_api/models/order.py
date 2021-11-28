@@ -9,4 +9,5 @@ class order(models.Model):
     directions = models.CharField(max_length=1000)
     location = models.ForeignKey(location, related_name='location', on_delete=models.CASCADE)
     warehouse = models.ForeignKey(warehouse, related_name='warehouse', on_delete=models.CASCADE)
+    moneynumber=models.IntegerField(null=True)
     

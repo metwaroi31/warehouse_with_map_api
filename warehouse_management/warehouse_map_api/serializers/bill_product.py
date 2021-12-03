@@ -8,7 +8,7 @@ from rest_framework import routers, serializers, viewsets
 # Serializers define the API representation.
 class BillProductSerializer(serializers.HyperlinkedModelSerializer):
     # id = serializers.IntegerField(read_only=True)
-    bill = serializers.PrimaryKeyRelatedField(read_only=True)
+    bill = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     qty = serializers.DecimalField(decimal_places=14, max_digits=1000)
     class Meta:

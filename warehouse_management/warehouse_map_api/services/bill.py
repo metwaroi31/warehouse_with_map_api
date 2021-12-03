@@ -4,15 +4,18 @@ from warehouse_map_api.models.bill_product import bill_product
 from warehouse_map_api.serializers.product import ProductSerializer
 
 def create_bill(data):
-    serializer = BillSerializer(data=data)
+    # print (data)
+    bill_serializer = BillSerializer(data=data)
     
-    if serializer.is_valid():
-        serializer.save()
-    return serializer.data
+    if bill_serializer.is_valid():
+        bill_serializer.save()
+    detail_bill = get_detail_bill(bill_serializer.data["id"])
+    return_bill = bill_serializer.data
+    return_bill["products"] = detail_bill
+    return return_bill
 
 def get_bill(bill_id):
     bill_to_get = bill.objects.get(id=bill_id)
-    # print (bill_to_get.__dict__)
     detail_bill = get_detail_bill(bill_id)
     serializer = BillSerializer(bill_to_get)
     return_bill = serializer.data

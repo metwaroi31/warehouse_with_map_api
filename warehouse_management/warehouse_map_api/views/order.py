@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
-from warehouse_map_api.services.order import create_order, get_order, delete_order, update_order
+from warehouse_map_api.services.order import *
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -9,7 +9,13 @@ from rest_framework import status
 def add_order(request):
     if request.method == 'POST':
         order = create_order(request.data)
-        return Response(order)
+        return Response(order, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_order_list_view(request, index):
+    if request.method == 'GET':
+        order_list = get_order_list(index)
+        return Response(order_list, status=status.HTTP_200_OK)
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def order_view(request, id):

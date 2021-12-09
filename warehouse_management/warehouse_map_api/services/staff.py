@@ -15,6 +15,13 @@ def get_staff(staff_id):
 
     return serializer.data
 
+def get_staff_list(index):
+    staffs = staff.objects.all()
+    start_index = index * 10 - 10
+    end_index = index * 10
+    serializer = StaffSerializer(staffs[start_index:end_index], many=True)
+    return serializer.data 
+
 def delete_staff(staff_id):
     staff_to_delete = staff.objects.get(id=staff_id)
     staff_to_delete.delete()

@@ -3,7 +3,7 @@
 # Create your views here.
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
-from warehouse_map_api.services.staff import create_staff, get_staff, delete_staff, update_staff
+from warehouse_map_api.services.staff import *
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -12,7 +12,13 @@ from rest_framework import status
 def add_staff(request):
     if request.method == 'POST':
         staff = create_staff(request.data)
-        return Response(staff)
+        return Response(staff, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_staff_list_view(request, index):
+    if request.method == 'GET':
+        staff_list = get_staff_list(index)
+        return Response(staff_list, status=status.HTTP_200_OK)
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def staff_view(request, id):

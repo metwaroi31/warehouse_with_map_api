@@ -28,6 +28,13 @@ def delete_bill(bill_id):
     
     return True
 
+def get_bill_list(index):
+    bills = bill.objects.all()
+    start_index = index * 10 - 10
+    end_index = index * 10
+    serializer = BillSerializer(bills[start_index:end_index], many=True)
+    return serializer.data 
+
 def get_detail_bill(bill_id):
     return_detail_bill = []
     bill_products_to_get = bill_product.objects.filter(bill=bill_id)

@@ -3,26 +3,22 @@
 # Create your views here.
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
-from warehouse_map_api.services.warehouse import add_warehouse, get_warehouse, delete_warehouse, update_warehouse
+from warehouse_map_api.services.warehouse import add_warehouse, get_warehouse, delete_warehouse, update_warehouse, \
+                                                    get_warehouse_list
 from rest_framework.response import Response
 from rest_framework import status
-
-# from warehouse_map_api.serializers.warehouse import WarehouseSerializer
-
-# @api_view(['PUT', 'GET', 'DELETE'])
-# def warehouse (request):
-#     if request.method == 'PUT' :
-#         warehouse = add_warehouse(request.data)
-#         return Response(warehouse)
-    
-#     if request.method == 'GET' :
-#         warehouse
 
 @api_view(['POST'])
 def add_warehouse_view(request):
     if request.method == 'POST':
         warehouse = add_warehouse(request.data)
         return Response(warehouse, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_warehouse_list_view(request, index):
+    if request.method == 'GET':
+        list_of_warehouse = get_warehouse_list(index)
+        return Response(list_of_warehouse, status=status.HTTP_200_OK)
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def warehouse_view(request, id):

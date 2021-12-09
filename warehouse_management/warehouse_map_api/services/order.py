@@ -12,6 +12,13 @@ def create_order(data):
         serializer.save() 
     return serializer.data
 
+def get_order_list(index):
+    orders = order.objects.all()
+    start_index = index * 10 - 10
+    end_index = index * 10
+    serializer = OrderSerializer(orders[start_index:end_index], many=True)
+    return serializer.data
+
 def get_order(order_id):
     order_to_get = order.objects.get(id=order_id)
     serializer = OrderSerializer(order_to_get)

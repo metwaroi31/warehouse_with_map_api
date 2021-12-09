@@ -18,6 +18,13 @@ def get_warehouse(warehouse_id):
 
     return serializer.data
 
+def get_warehouse_list(index):
+    warehouses = warehouse.objects.all()
+    start_index = index * 10 - 10
+    end_index = index * 10
+    serializer = WarehouseSerializer(warehouses[start_index:end_index], many=True)
+    return serializer.data
+
 def delete_warehouse(warehouse_id):
     warehouse_to_delete = warehouse.objects.get(id=warehouse_id)
     warehouse_to_delete.delete()

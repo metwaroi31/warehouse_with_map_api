@@ -10,6 +10,12 @@ def add_bill(request):
         bill = create_bill(request.data)
         return Response(bill, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def get_bill_list_view(request, index):
+    if request.method == 'GET':
+        bill_list = get_bill_list(index)
+        return Response(bill_list, status=status.HTTP_200_OK)
+
 @api_view(['GET', 'DELETE'])
 def bill_view(request, id):
     if request.method == 'GET':

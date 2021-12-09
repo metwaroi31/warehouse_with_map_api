@@ -15,6 +15,14 @@ def get_product(product_id):
 
     return serializer.data
 
+def get_product_list(index):
+    products = Product.objects.all()
+    start_index = index * 10 - 10
+    end_index = index * 10
+    serializer = ProductSerializer(products[start_index:end_index], many=True)
+    return serializer.data
+    
+
 def delete_product(product_id):
     product_to_delete = Product.objects.get(id=product_id)
     product_to_delete.delete()

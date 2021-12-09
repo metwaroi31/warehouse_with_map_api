@@ -8,7 +8,13 @@ from rest_framework import status
 def add_product(request):
     if request.method == 'POST':
         product = create_product(request.data)
-        return Response(product)
+        return Response(product,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_product_list_view(request, index):
+    if request.method == 'GET':
+        product_list = get_product_list(index)
+        return Response(product_list, status=status.HTTP_200_OK)
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def product_view(request, id):

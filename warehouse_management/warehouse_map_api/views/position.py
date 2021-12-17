@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
-from warehouse_map_api.services.position import create_position, get_position, delete_position,update_position
+from warehouse_map_api.services.position import *
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -26,3 +26,11 @@ def position_view(request, id):
     if request.method == 'PUT':
         position = update_position(request.data,id)
         return Response(position, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def position_list_view(request):
+    if request.method == 'GET':
+        position_list = get_all_position()
+        response_data = {}
+        response_data["list"] = position_list
+        return Response(response_data, status=status.HTTP_200_OK)

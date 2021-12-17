@@ -18,7 +18,9 @@ def add_staff(request):
 def get_staff_list_view(request, index):
     if request.method == 'GET':
         staff_list = get_staff_list(index)
-        return Response(staff_list, status=status.HTTP_200_OK)
+        response_data = {}
+        response_data["list"] = staff_list
+        return Response(response_data, status=status.HTTP_200_OK)
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def staff_view(request, id):

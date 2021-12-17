@@ -5,8 +5,8 @@ from rest_framework import routers, serializers, viewsets
 # Serializers define the API representation.
 class LocationSerializer(serializers.HyperlinkedModelSerializer):
     # id = serializers.IntegerField(read_only=True)
-    geo_location_x = serializers.DecimalField(decimal_places=14, max_digits=1000)
-    geo_location_y = serializers.DecimalField(decimal_places=14, max_digits=1000)
+    geo_location_x = serializers.CharField(max_length=1000)
+    geo_location_y = serializers.CharField(max_length=1000)
     class Meta:
         model = location
         fields = ['geo_location_x', 'geo_location_y']

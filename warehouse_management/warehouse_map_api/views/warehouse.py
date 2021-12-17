@@ -18,7 +18,9 @@ def add_warehouse_view(request):
 def get_warehouse_list_view(request, index):
     if request.method == 'GET':
         list_of_warehouse = get_warehouse_list(index)
-        return Response(list_of_warehouse, status=status.HTTP_200_OK)
+        response_data = {}
+        response_data["list"] = list_of_warehouse
+        return Response(response_data, status=status.HTTP_200_OK)
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def warehouse_view(request, id):

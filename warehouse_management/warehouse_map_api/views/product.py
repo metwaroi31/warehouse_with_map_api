@@ -14,7 +14,9 @@ def add_product(request):
 def get_product_list_view(request, index):
     if request.method == 'GET':
         product_list = get_product_list(index)
-        return Response(product_list, status=status.HTTP_200_OK)
+        response_data = {}
+        response_data["list"] = product_list
+        return Response(response_data, status=status.HTTP_200_OK)
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def product_view(request, id):

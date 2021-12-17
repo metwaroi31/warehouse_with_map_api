@@ -27,3 +27,8 @@ def update_position(data,pos_id):
     if serializer.is_valid():
         serializer.save()
     return serializer.data
+
+def get_all_position():
+    positions = position.objects.all()
+    serializer = PositionSerializer(positions, many=True)
+    return serializer.data

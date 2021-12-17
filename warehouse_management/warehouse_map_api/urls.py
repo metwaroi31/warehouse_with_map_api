@@ -37,6 +37,7 @@ urlpatterns = [
     # position api
     path('api/add_position', add_position),
     path('api/position/<int:id>',position_view),
+    path('api/position_list', position_list_view),
 
     # order api
     path('api/order_list/<int:index>', get_order_list_view),
